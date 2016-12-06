@@ -32,9 +32,15 @@ $input = htmlspecialchars(stripslashes($_POST["query"]));
 //echo $_POST["query"] . "<br>";
 //echo $input . "<br>";
 
+$parts = explode(" ", $input);
+$lastname = array_pop($parts);
+$firstname = implode(" ", $parts);
 
-
-$sql = "SELECT pID, pName FROM PATIENT WHERE pName LIKE '%" . $input . "%' ORDER BY pName ASC;";
+$sql = 
+"SELECT pID, pFirstName, pLastName 
+FROM PATIENT 
+WHERE pFirstName LIKE '%" . $firstname . "%' OR pLastName LIKE '%" . $lastname . "%' 
+ORDER BY pFirstName ASC;";
 
 //echo $sql;
 //echo "<br>";
@@ -43,20 +49,16 @@ $result = $conn -> query($sql);
 if ($result->num_rows > 0){
 	
 	echo "<table style=\"width:50%\" border=\"\">";
-	//echo "<tr><th>pid</th><th>name</th></tr>";
 	echo "<tr><th>Patient Results:</th></tr>";
 
-	//check to see if you can integer loop arr to make columns more dynamic
 	while($row = $result->fetch_assoc()){
 		echo "<tr>";
 
-	//	echo "<td>" . $row["pid"] . "</td>";
 		echo "<td><a href=visits.php?id=".$row["pID"].">"
-		. $row["pName"] . "</a>"."</td>";
+		. $row["pFirstName"]. " " . $row["pLastName"] . "</a>"."</td>";
 
 		echo "</tr>";	
 	}
-	//echo "pid: " . $row["pid"]. " name: " . $row["name"] . "<br>";
 }
 else echo "0 results<br>";
 

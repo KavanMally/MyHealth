@@ -10,7 +10,7 @@
 
 
 <?php
-
+//visits.php
 	$id = $_GET["id"];
 
 	//connect 
