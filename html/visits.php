@@ -39,12 +39,22 @@
 ?>
 
 <table style="width:50%" border="">
-	<tr><th>Patient details:</ht></tr>
-	<tr><td>Name: <?php echo $GLOBALS['patient_data']['pFirstName']. " ". $GLOBALS['patient_data']['pLastName'];?></td>
+	<tr><th>Patient details:</th></tr>
+	<tr>
+		<td>Name: <?php echo $GLOBALS['patient_data']['pFirstName']. " ". $GLOBALS['patient_data']['pLastName'];?></td>
 		<td>Matital Status: <?php echo $GLOBALS['patient_data']['pMarital'];?></td>
-    </tr>
-	<tr><td>Age: <?php echo $GLOBALS['patient_data']['pAge'];?></td></tr>
-	<tr><td>Sex: <?php echo $GLOBALS['patient_data']['pGender'];?></td></tr>
+	</tr>
+
+	<tr>
+		<td>Age: <?php echo $GLOBALS['patient_data']['pAge'];?></td>
+		<td>Birthday: <?php echo $GLOBALS['patient_data']['pBday'];?></td>
+	</tr>
+
+	<tr>
+		<td>Sex: <?php echo $GLOBALS['patient_data']['pGender'];?></td>
+		<td>Demograph: <?php echo $GLOBALS['patient_data']['pDem'];?></td>
+	</tr>
+	
 </table>
 
 <br>

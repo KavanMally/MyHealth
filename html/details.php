@@ -22,16 +22,18 @@
 	$input = htmlspecialchars(stripslashes($id));
 	$sql = "SELECT * FROM VISITS WHERE vID =  ". $input . ";"; 
 	$result = $conn->query($sql);
+
 	//spit data onto screen
 	$row = $result -> fetch_assoc();
-	//echo "<table style=\"width:50%\" border=\"\">";	
 ?>
 
-<p>
-    <?php 
-    echo $GLOBALS['row']['weight'];
-    ?> 
-</p>
+<table style="width:50%" border="">
+	<tr><th>Patient Details:</th></tr>
+	<tr>
+		<td>Height:</td>
+		<td><?php echo $GLOBALS['row']['height']; ?> inches</td>
+	</tr>
+
 
 </body>
 
