@@ -1,16 +1,9 @@
 <!doctype html>
-
 <html>
-
 <head>
-
 </head>
-
 <body>
-
-
 <?php
-//visits.php
 	$id = $_GET["id"];
 
 	//connect 
@@ -20,24 +13,60 @@
 	$dbname = "my_health";
 
 	$conn = new mysqli($servername, $username, $password, $dbname);
-
 	if($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
 	$input = htmlspecialchars(stripslashes($id));
-	$sql = 
+
+	//get info from sql server
+	$patient_query = 
+	"SELECT * FROM PATIENT WHERE pID = ".$input.";";
+	$patient_data = ($conn->query($patient_query))->fetch_assoc();
+
+
+	$visit_query = 
 	"SELECT vID, vDate
 	 FROM VISITS
 	 WHERE pID = ".$input . ";";	
-	
-	$result = $conn->query($sql);
+	$visit_data = $conn->query($visit_query);
 
-		
-	if($result->num_rows>0){
+	$conn->close();
+
+
+
+
+	
+
+?>
+
+<table style="width:50%" border="">
+	<tr><th>Patient details:</ht></tr>
+	<tr><td>Name: <?php echo $GLOBALS['patient_data']['pFirstName']. " ". $GLOBALS['patient_data']['pLastName'];?></td>
+		<td>Matital Status: <?php echo $GLOBALS['patient_data']['pMarital'];?></td>
+    </tr>
+	<tr><td>Age: <?php echo $GLOBALS['patient_data']['pAge'];?></td></tr>
+	<tr><td>Sex: <?php echo $GLOBALS['patient_data']['pGender'];?></td></tr>
+</table>
+
+<br>
+<br>
+<br>
+<br>
+
+
+<?php
+
+	//display visit table		
+	
+
+
+
+
+	if($GLOBALS['visit_data']->num_rows>0){
 
 		echo "<table style=\"width:50%\" border=\"\">";
 		echo "<tr><th>Visit Dates:</th></tr>";
 		
-		while($row=$result->fetch_assoc()){
+		while($row=$GLOBALS['visit_data']->fetch_assoc()){
 			
 
 			echo "<tr>";
@@ -47,8 +76,8 @@
 		}
 	}
 	else echo "0 results<br>";
-
 	echo "</table>";
+
 
 ?>
 

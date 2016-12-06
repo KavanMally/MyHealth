@@ -10,10 +10,8 @@
 <body>
 
 
-
 <?php
-
-
+//search.php
 $servername = "localhost";
 $username = "root";
 $password = "Cleveland123";
@@ -24,7 +22,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 if($conn -> connect_error) die("Connection failed: " . $conn -> connect_error);
 //echo "Connection successful! <br>";
 
-
+//include 'my_connection.php';
 
 //$conn = $my_connection::get_connection();
 $input = htmlspecialchars(stripslashes($_POST["query"]));
