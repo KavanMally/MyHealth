@@ -20,8 +20,12 @@
 
 	if($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 	$input = htmlspecialchars(stripslashes($id));
-	
-	$sql = "SELECT * FROM VISITS WHERE vID =  ". $input . ";"; 
+
+	//check if it differs between vid and pid and get deps sorted out	
+	$sql = 
+	"SELECT * 
+	FROM VISITS, VACCINES, PATIENT 
+	WHERE vID =  ". $input . "rid = ".$input . "hid = ".$input";"; 
 
 	$result = $conn->query($sql);
 
