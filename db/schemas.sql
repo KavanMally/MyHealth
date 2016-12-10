@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `DOCTOR`;
 CREATE TABLE `DOCTOR` (
   `did` int(10) NOT NULL,
   `dLastName` varchar(20) DEFAULT NULL,
-  `dbday` int(8) NOT NULL,
+  `dbday` date DEFAULT NULL,
   `field` varchar(20) DEFAULT NULL,
   `dFirstName` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`did`)
@@ -38,7 +38,7 @@ CREATE TABLE `DOCTOR` (
 
 LOCK TABLES `DOCTOR` WRITE;
 /*!40000 ALTER TABLE `DOCTOR` DISABLE KEYS */;
-INSERT INTO `DOCTOR` VALUES (1,'Wu',1011990,'pediatrics','Ben'),(2,'Yang',2141995,'physician','Chris'),(3,'Fields',8111994,'surgeon','Sarah'),(4,'Lispen',11151989,'therapist','Blake'),(5,'Bell',10311998,'Pharmacy Technician','Elizabeth');
+INSERT INTO `DOCTOR` VALUES (1,'Wu','0000-00-00','pediatrics','Ben'),(2,'Yang','0000-00-00','physician','Chris'),(3,'Fields','0000-00-00','surgeon','Sarah'),(4,'Lispen','0000-00-00','therapist','Blake'),(5,'Bell','0000-00-00','Pharmacy Technician','Elizabeth');
 /*!40000 ALTER TABLE `DOCTOR` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `PATIENT`;
 CREATE TABLE `PATIENT` (
   `pID` int(10) NOT NULL,
   `pFirstName` varchar(20) DEFAULT NULL,
-  `pBday` int(8) NOT NULL,
+  `pBday` date DEFAULT NULL,
   `pDem` varchar(20) DEFAULT NULL,
   `pAge` int(3) DEFAULT NULL,
   `pGender` char(1) DEFAULT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `PATIENT` (
 
 LOCK TABLES `PATIENT` WRITE;
 /*!40000 ALTER TABLE `PATIENT` DISABLE KEYS */;
-INSERT INTO `PATIENT` VALUES (1,'Cecil',9141993,'Mexican',23,'M','N','Gonzales'),(2,'Isabel',7161996,'English',20,'F','Y','Garner'),(3,'Tyler',4011994,'German',22,'M','Y','Robbins'),(4,'Carla',6171986,'German',30,'F','N','Rogers');
+INSERT INTO `PATIENT` VALUES (1,'Cecil','0000-00-00','Mexican',23,'M','N','Gonzales'),(2,'Isabel','0000-00-00','English',20,'F','Y','Garner'),(3,'Tyler','0000-00-00','German',22,'M','Y','Robbins'),(4,'Carla','0000-00-00','German',30,'F','N','Rogers');
 /*!40000 ALTER TABLE `PATIENT` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,4 +181,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-04 11:42:26
+-- Dump completed on 2016-12-10 14:12:48
