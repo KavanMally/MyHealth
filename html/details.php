@@ -6,8 +6,9 @@
 
 </head>
 
-<?php
+<body>
 
+<?php
 	$id = $_GET["id"];
 
 	//connect
@@ -24,8 +25,8 @@
 	//check if it differs between vid and pid and get deps sorted out	
 	$sql = 
 	"SELECT * 
-	FROM VISITS, VACCINES, PATIENT 
-	WHERE vID =  ". $input . "rid = ".$input . "hid = ".$input";"; 
+	FROM VISITS, VACCINES, PATIENT, HABITS
+	WHERE vID = ". $input . " AND rid = ".$input . " AND PATIENT.pID = ".$input . " AND hID = ".$input .";"; 
 
 	$result = $conn->query($sql);
 
@@ -36,7 +37,7 @@
 ?>
 
 <table style="width:50%" border="">
-	<tr><th>Patient Details:</th></tr>
+	<tr rowspan=1><th>Patient Details:</th></tr>
 	<tr>
 		<td>Height:</td>
 		<td><?php echo $GLOBALS['row']['height']; ?> inches</td>
@@ -61,38 +62,102 @@
 <br><br>
 
 <table style="width:50%" border="">
+	<tr><th>Readings:</th></tr>
 	<tr>
 		<td>Total Cholestoral</td>
-		<td><?php echo $GLOBALS['row']['cholesteral']; ?> bpm</td>
+		<td><?php echo $GLOBALS['row']['cholesteral']; ?> mmol/L</td>
 	</tr>
 	<tr>
 		<td>LDC Cholesteral:</td>
-		<td><?php echo $GLOBALS['row']['ldc_chol']; ?> bpm</td>
+		<td><?php echo $GLOBALS['row']['ldc_chol']; ?> mmol/L</td>
 	</tr>
 	<tr>
 		<td>MDL Cholesteral:</td>
-		<td><?php echo $GLOBALS['row']['mdl_chol']; ?> bpm</td>
+		<td><?php echo $GLOBALS['row']['mdl_chol']; ?> mmol/L</td>
 	</tr>
 	<tr>
 		<td>Triglycerides:</td>
-		<td><?php echo $GLOBALS['row']['triglycerides']; ?> bpm</td>
+		<td><?php echo $GLOBALS['row']['triglycerides']; ?>mmol/L </td>
 	</tr>
 	<tr>
 		<td>Glucose:</td>
-		<td><?php echo $GLOBALS['row']['glucose']; ?> bpm</td>
+		<td><?php echo $GLOBALS['row']['glucose']; ?> mmol/L</td>
 	</tr>
 	<tr>
 		<td>Creatinine:</td>
-		<td><?php echo $GLOBALS['row']['creatinine']; ?> bpm</td>
+		<td><?php echo $GLOBALS['row']['creatinine']; ?> mmol/L</td>
 	</tr>
 	<tr>
 		<td>GFR:</td>
-		<td><?php echo $GLOBALS['row']['GFR']; ?> bpm</td>
+		<td><?php echo $GLOBALS['row']['GFR']; ?> mmol/L</td>
+	</tr>
+</table>
+<br><br>
+
+<table style="width:50%" border="">
+	<tr><th>Habits:</th></tr>
+	<tr>
+		<td>Exercise:</td>
+		<td><?php echo $GLOBALS['row']['hExercise']; ?></td>
+	</tr>
+	<tr>
+		<td>Meals::</td>
+		<td><?php echo $GLOBALS['row']['hMeal']; ?> </td>
+	</tr>
+	<tr>
+		<td>Snacks:</td>
+		<td><?php echo $GLOBALS['row']['hSnacks']; ?> </td>
+	</tr>
+	<tr>
+		<td>Sleep:</td>
+		<td><?php echo $GLOBALS['row']['hSleep']; ?></td>
+	</tr>
+	<tr>
+		<td>Smoking:</td>
+		<td><?php echo $GLOBALS['row']['hSmoke']; ?></td>
 	</tr>
 
+	<tr>
+		<td>Alcohol</td>
+		<td><?php echo $GLOBALS['row']['hAlcohol']; ?></td>
+	</tr>
 
 </table>
+<br><br>
+
+<table style="width:50%" border="">
+	<tr><th>Vaccine Records:</th></tr>
+	<tr>
+		<td>Tetanus</td>
+		<td><?php echo $GLOBALS['row']['rTdep']; ?></td>
+	</tr>
+	<tr>
+		<td>Flu</td>
+		<td><?php echo $GLOBALS['row']['rFlu']; ?></td>
+	</tr>
+	<tr>
+		<td>HPV</td>
+		<td><?php echo $GLOBALS['row']['rHPV']; ?> </td>
+	</tr>
+	<tr>
+		<td>Hepititus A</td>
+		<td><?php echo $GLOBALS['row']['rHepA']; ?></td>
+	</tr>
+	<tr>
+		<td>Hepititus B</td>
+		<td><?php echo $GLOBALS['row']['rHepB']; ?></td>
+	</tr>
+</table>
+<br><br>
+
+
+
+<br><br>
+
+
+
 
 </body>
+
 
 </html>
