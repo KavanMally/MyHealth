@@ -31,11 +31,6 @@
 
 	$conn->close();
 
-
-
-
-	
-
 ?>
 
 <table style="width:50%" border="">
@@ -62,15 +57,8 @@
 <br>
 <br>
 
-
 <?php
-
 	//display visit table		
-	
-
-
-
-
 	if($GLOBALS['visit_data']->num_rows>0){
 
 		echo "<table style=\"width:50%\" border=\"\">";
@@ -87,13 +75,8 @@
 	}
 	else echo "0 results<br>";
 	echo "</table>";
-
-
 ?>
 
-
 </body>
-
-
 
 </html>

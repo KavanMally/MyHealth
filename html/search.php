@@ -24,7 +24,6 @@ if($conn -> connect_error) die("Connection failed: " . $conn -> connect_error);
 
 //include 'my_connection.php';
 
-//$conn = $my_connection::get_connection();
 $input = htmlspecialchars(stripslashes($_POST["query"]));
 //$input = $_POST["query"];
 //echo $_POST["query"] . "<br>";
@@ -34,10 +33,12 @@ $parts = explode(" ", $input);
 $lastname = array_pop($parts);
 $firstname = implode(" ", $parts);
 
+
 $sql = 
 "SELECT pID, pFirstName, pLastName 
 FROM PATIENT 
-WHERE pFirstName LIKE '%" . $firstname . "%' OR pLastName LIKE '%" . $lastname . "%' 
+WHERE pFirstName LIKE '" . $firstname . "' OR pLastName LIKE '" . $lastname . "'
+OR pFirstName LIKE '" . $lastname . "' OR pLastName LIKE '".$firstname."'
 ORDER BY pFirstName ASC;";
 
 //echo $sql;

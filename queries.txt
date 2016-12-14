@@ -1,0 +1,35 @@
+
+
+search.php
+
+select pID, pFirstName, pLastName
+FROM PATIENT
+WHERE pFirstName LIKE '$firstname' or pLastName LIKE '$lastname'
+ORDER BY pFirstName ASC;
+
+
+visits.php
+
+select *
+from PATIENT
+where pID = '$input';
+
+select vID, vDate
+from VISITS
+where pID = '$input';
+
+
+details.php
+
+select *
+from VISITS, VACCINES, PATIENT, HABITS
+where vID = '$input' and rid = '$input' and PATIENT.pID = '$input' and hID = '$input';
+
+
+insert_doctor.php
+
+insert into DOCTOR set did=COUNT(did)+1, dFirstName = $firstname, dLastName = $lastname, dbday=$birthday, field=$field;
+
+insert_patient.php
+
+insert into PATIENT set pID=COUNT(pID)+1, pFirstName=$firstname, pLastName=$lastname, pBday=$birthday, pAge=$age, pGender=$gender, pMarital=$marital_status, pDem=$demographic;

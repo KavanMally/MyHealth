@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.53, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.16, for Linux (x86_64)
 --
--- Host: localhost    Database: EECS341_Project2
+-- Host: localhost    Database: my_health
 -- ------------------------------------------------------
--- Server version	5.5.53-0ubuntu0.14.04.1
+-- Server version	5.7.16-0ubuntu0.16.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `DOCTOR`;
 CREATE TABLE `DOCTOR` (
   `did` int(10) NOT NULL,
   `dLastName` varchar(20) DEFAULT NULL,
-  `dbday` date DEFAULT NULL,
+  `dbday` int(8) NOT NULL,
   `field` varchar(20) DEFAULT NULL,
   `dFirstName` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`did`)
@@ -38,7 +38,7 @@ CREATE TABLE `DOCTOR` (
 
 LOCK TABLES `DOCTOR` WRITE;
 /*!40000 ALTER TABLE `DOCTOR` DISABLE KEYS */;
-INSERT INTO `DOCTOR` VALUES (1,'Wu','0000-00-00','pediatrics','Ben'),(2,'Yang','0000-00-00','physician','Chris'),(3,'Fields','0000-00-00','surgeon','Sarah'),(4,'Lispen','0000-00-00','therapist','Blake'),(5,'Bell','0000-00-00','Pharmacy Technician','Elizabeth');
+INSERT INTO `DOCTOR` VALUES (1,'Wu',1011990,'pediatrics','Ben'),(2,'Yang',2141995,'physician','Chris'),(3,'Fields',8111994,'surgeon','Sarah'),(4,'Lispen',11151989,'therapist','Blake'),(5,'Bell',10311998,'Pharmacy Technician','Elizabeth'),(6,'Janes',234,'Child Practician','Jesse');
 /*!40000 ALTER TABLE `DOCTOR` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +82,7 @@ DROP TABLE IF EXISTS `PATIENT`;
 CREATE TABLE `PATIENT` (
   `pID` int(10) NOT NULL,
   `pFirstName` varchar(20) DEFAULT NULL,
-  `pBday` date DEFAULT NULL,
+  `pBday` int(8) NOT NULL,
   `pDem` varchar(20) DEFAULT NULL,
   `pAge` int(3) DEFAULT NULL,
   `pGender` char(1) DEFAULT NULL,
@@ -98,7 +98,7 @@ CREATE TABLE `PATIENT` (
 
 LOCK TABLES `PATIENT` WRITE;
 /*!40000 ALTER TABLE `PATIENT` DISABLE KEYS */;
-INSERT INTO `PATIENT` VALUES (1,'Cecil','0000-00-00','Mexican',23,'M','N','Gonzales'),(2,'Isabel','0000-00-00','English',20,'F','Y','Garner'),(3,'Tyler','0000-00-00','German',22,'M','Y','Robbins'),(4,'Carla','0000-00-00','German',30,'F','N','Rogers');
+INSERT INTO `PATIENT` VALUES (1,'Cecil',9141993,'Mexican',23,'M','N','Gonzales'),(2,'Isabel',7161996,'English',20,'F','Y','Garner'),(3,'Tyler',4011994,'German',22,'M','Y','Robbins'),(4,'Carla',6171986,'German',30,'F','N','Rogers'),(5,'John',2354,'Asian',30,NULL,'N','Doe'),(6,'Jane',23523,'African',28,'F','N','Doe'),(7,'Chris',-1994,'Asian',20,'M','N','Yang');
 /*!40000 ALTER TABLE `PATIENT` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -127,7 +127,7 @@ CREATE TABLE `VACCINES` (
 
 LOCK TABLES `VACCINES` WRITE;
 /*!40000 ALTER TABLE `VACCINES` DISABLE KEYS */;
-INSERT INTO `VACCINES` VALUES (1,'Y','Y','Y','Y','Y'),(2,'Y','N','Y','Y','Y'),(4,'N','N','Y','Y','Y');
+INSERT INTO `VACCINES` VALUES (1,'Y','Y','Y','Y','Y'),(2,'Y','N','Y','Y','Y'),(3,'N','N','N','N','N'),(4,'N','N','Y','Y','Y');
 /*!40000 ALTER TABLE `VACCINES` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -160,7 +160,7 @@ CREATE TABLE `VISITS` (
   KEY `did` (`did`),
   CONSTRAINT `VISITS_ibfk_1` FOREIGN KEY (`pID`) REFERENCES `PATIENT` (`pID`),
   CONSTRAINT `VISITS_ibfk_2` FOREIGN KEY (`did`) REFERENCES `DOCTOR` (`did`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -169,6 +169,7 @@ CREATE TABLE `VISITS` (
 
 LOCK TABLES `VISITS` WRITE;
 /*!40000 ALTER TABLE `VISITS` DISABLE KEYS */;
+INSERT INTO `VISITS` VALUES (1,1,2,'60',100,12,110,50,150,100,130,150,100,2,90,'2016-12-30');
 /*!40000 ALTER TABLE `VISITS` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -181,4 +182,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-12-10 14:12:48
+-- Dump completed on 2016-12-11 22:41:50
